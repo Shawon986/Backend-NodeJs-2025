@@ -28,8 +28,9 @@ app.get('/api/products', (req,res)=>{
 });
 
 app.post('/api/products', (req,res)=>{
-    console.log(req.body);
-    res.send("Product added successfully");
+    const newProduct = req.body;
+    products.push(newProduct);
+    res.status(201).json(newProduct);
 });
 
 app.listen(port, ()=>{
