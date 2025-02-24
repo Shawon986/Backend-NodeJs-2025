@@ -1,17 +1,20 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 
 const port = 8000;
 app.use(express.json());
 
 const products = [
-    {
+    {   
+        "_id": uuidv4(),
         "name": "Sony",
         "model": "Xperia 1 vi",
         "color": "Off white",
         "price": "5600 rmb",
     },
-    {
+    {   
+        "_id": uuidv4(),
         "name": "Iphone",
         "model": "16 pro max",
         "color": "Purple",
@@ -28,10 +31,12 @@ app.get('/api/products', (req,res)=>{
 });
 
 app.post('/api/products', (req,res)=>{
-    const newProduct = req.body;
+    const newProductData = req.body;
+    const newProduct = {_id: uuidv4(),...newProductData}; 
     products.push(newProduct);
     res.status(201).json(newProduct);
 });
+
 
 app.listen(port, ()=>{
     console.log(`I am running on port ${port}`);
