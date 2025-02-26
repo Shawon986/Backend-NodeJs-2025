@@ -50,6 +50,16 @@ app.put('/api/products/:id', (req,res)=>{
 
     res.status(201).json(products[updatedProductIndex]);
      
+});
+
+app.delete('/api/products/:id', (req,res)=>{
+    const {id} = req.params;
+    let updatedProductIndex = products.findIndex((products)=> products._id == id);
+    if(updatedProductIndex === -1){
+        return res.status(400).json({message:`No product found by id ${id}`})
+    }
+    products.splice(updatedProductIndex,1);
+    res.status(201).json({message:"Product deleted successfully"});
 })
 
 app.listen(port, ()=>{
