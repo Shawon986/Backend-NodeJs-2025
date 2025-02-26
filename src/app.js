@@ -39,11 +39,17 @@ app.post('/api/products', (req,res)=>{
 
 app.put('/api/products/:id', (req,res)=>{
     const {id} = req.params;
-    const updatedProduct = products.find((products)=> products._id == id);
-    if(!updatedProduct){
+    const payload = req.body;
+
+    let updatedProductIndex = products.findIndex((products)=> products._id == id);
+    if(updatedProductIndex === -1){
         return res.status(400).json({message:`No product found by id ${id}`})
     }
-    res.json({message:"Product updated successfully"});
+    // res.json({message:"Product updated successfully"});
+    products[updatedProductIndex] = {...products[updatedProductIndex], ...payload};
+
+    res.status(201).json(products[updatedProductIndex]);
+     
 })
 
 app.listen(port, ()=>{
