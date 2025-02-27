@@ -1,11 +1,10 @@
 const express = require('express');
 const productsRouter = express.Router();
-const { v4: uuidv4 } = require('uuid');
-const { productService } = require('./service/productService');
+const productService = require('./service/productService');
 
 
 
-
+ 
 
 productsRouter.get('/api/products', (req,res)=>{
     res.send(productService.getAllProducts());
@@ -14,10 +13,8 @@ productsRouter.get('/api/products', (req,res)=>{
 
 
 productsRouter.post('/api/products', (req,res)=>{
-    const newProductData = req.body;
-    const newProduct = {_id: uuidv4(),...newProductData}; 
-    products.push(newProduct);
-    res.status(201).json(newProduct);
+
+    res.status(201).json(productService.createNewProduct(req.body));
 });
 
 productsRouter.put('/api/products/:id', (req,res)=>{
