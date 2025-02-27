@@ -20,9 +20,6 @@ const products = [
 ];
 
 
-productsRouter.get('/status', (req,res)=>{
-    res.send("OK")
-});
 
 productsRouter.get('/api/products', (req,res)=>{
     res.send(products);
