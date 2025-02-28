@@ -34,8 +34,16 @@ const updateProduct = (id,payload)=>{
     return products[updatedProductIndex];
 }
 
+const deleteProduct = (id)=>{
+    let ProductIndex = products.findIndex((products)=> products._id == id);
+    if(ProductIndex === -1){
+        throw new Error("No product found");
+    }
+    products.splice(ProductIndex,1);
+}
 module.exports = {
     getAllProducts,
     createNewProduct,
     updateProduct,
+    deleteProduct,
 }

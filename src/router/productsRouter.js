@@ -26,11 +26,7 @@ productsRouter.put('/api/products/:id', (req,res)=>{
 
 productsRouter.delete('/api/products/:id', (req,res)=>{
     const {id} = req.params;
-    let updatedProductIndex = products.findIndex((products)=> products._id == id);
-    if(updatedProductIndex === -1){
-        return res.status(400).json({message:`No product found by id ${id}`})
-    }
-    products.splice(updatedProductIndex,1);
+    productService.deleteProduct(id);
     res.status(201).json({message:"Product deleted successfully"});
 })
 
