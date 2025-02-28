@@ -25,7 +25,17 @@ const createNewProduct = (productPayload)=>{
     return newProduct;
 }
 
+const updateProduct = (id,payload)=>{
+    let updatedProductIndex = products.findIndex((products)=> products._id == id);
+    if(updatedProductIndex === -1){
+        throw new Error("No product found");
+    }
+    products[updatedProductIndex] = {...products[updatedProductIndex], ...payload};
+    return products[updatedProductIndex];
+}
+
 module.exports = {
     getAllProducts,
     createNewProduct,
+    updateProduct,
 }

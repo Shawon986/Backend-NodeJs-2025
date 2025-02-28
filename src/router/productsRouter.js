@@ -19,17 +19,9 @@ productsRouter.post('/api/products', (req,res)=>{
 
 productsRouter.put('/api/products/:id', (req,res)=>{
     const {id} = req.params;
-    const payload = req.body;
-
-    let updatedProductIndex = products.findIndex((products)=> products._id == id);
-    if(updatedProductIndex === -1){
-        return res.status(400).json({message:`No product found by id ${id}`})
-    }
-    // res.json({message:"Product updated successfully"});
-    products[updatedProductIndex] = {...products[updatedProductIndex], ...payload};
-
-    res.status(201).json(products[updatedProductIndex]);
-     
+    const updatedProduct = productService.updateProduct(id,req.body);
+    res.status(201).json(updatedProduct);
+    
 });
 
 productsRouter.delete('/api/products/:id', (req,res)=>{
