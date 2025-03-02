@@ -21,13 +21,13 @@ const users = [
 ];
 
 //Get all users API
-userRouter.get('/api/users', (req,res)=>{
+userRouter.get('/', (req,res)=>{
     res.send(users);
 });
 
 
 //Create new user API
-userRouter.post('/api/users', (req,res)=>{
+userRouter.post('/', (req,res)=>{
     const userData = req.body;
     const newUser = {_id: uuidv4(), ...userData}
     users.push(newUser);
@@ -35,7 +35,7 @@ userRouter.post('/api/users', (req,res)=>{
 });
 
 //Update user API
-userRouter.put('/api/users/:id', (req,res)=>{
+userRouter.put('/:id', (req,res)=>{
     const user = req.body;
     const { id } = req.params;
     let updatedUserIndex = users.findIndex((user) => user._id === id);
@@ -49,7 +49,7 @@ userRouter.put('/api/users/:id', (req,res)=>{
 });
 
 //Delete user API
-userRouter.delete('/api/users/:id', (req,res)=>{
+userRouter.delete('/:id', (req,res)=>{
     const { id } = req.params;
     let userIndex = users.findIndex((user) => user._id === id);
     if(userIndex === -1){
