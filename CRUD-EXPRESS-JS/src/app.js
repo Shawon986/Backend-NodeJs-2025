@@ -4,6 +4,10 @@ const port = 5000;
 const {configureRouter} = require('./router');
 app.use(express.json());
 
+app.use((req,res,next)=>{
+    console.log(`Time :`, Date.now());
+    next();
+})
 
 configureRouter(app);
 
