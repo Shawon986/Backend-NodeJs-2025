@@ -1,3 +1,4 @@
+const productRouter = require('./productRouter');
 const userRouter = require('./userRouter');
 
 
@@ -9,9 +10,10 @@ const configureRouter = (app)=>{
     });
 
     app.use('/api/users', userRouter);
+    app.use('/api/products', productRouter);
 }
 
 module.exports = {
 
     configureRouter,
-}
+} 
