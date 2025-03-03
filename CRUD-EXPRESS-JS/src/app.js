@@ -2,12 +2,10 @@ const express = require('express');
 const app = express();
 const port = 5000;
 const {configureRouter} = require('./router');
+const { logRequestMiddleware } = require('./middleware');
 app.use(express.json());
 
-app.use((req,res,next)=>{
-    console.log(`Request Method: ${req.method} URL: ${req.url}`);
-    next();
-})
+app.use(logRequestMiddleware);
 
 configureRouter(app);
 
