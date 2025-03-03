@@ -1,5 +1,6 @@
 const express = require('express');
 const { productServices } = require('../services');
+const { productMiddleware } = require('../middleware');
 const productRouter = express.Router();
 
 
@@ -9,7 +10,7 @@ productRouter.get('/',(req,res)=>{
 });
 
 //Create new product API
-productRouter.post('/',(req,res)=>{
+productRouter.post('/',productMiddleware,(req,res)=>{
     res.status(201).json(productServices.createNewProduct(req.body));
 });
 
