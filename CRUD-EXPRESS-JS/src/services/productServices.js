@@ -18,8 +18,13 @@ const products = [
 
 const getAllProducts = ()=> products;
 
+const createNewProduct =(productData)=>{
+    const newProduct = {id:uuidv4(), ...productData};
+    products.push(newProduct);
+    return newProduct;
+}
 
 module.exports = {
     getAllProducts,
-
+    createNewProduct,
 }
