@@ -27,7 +27,7 @@ const createNewProduct = (productData) => {
 const updateProduct = (id, product) => {
   let updateProductIndex = products.findIndex((product) => product._id === id);
   if (updateProductIndex === -1) {
-    throw new Error(`There is no product with this id: ${id}`);
+    throw new Error("Product not found");
   }
   products[updateProductIndex] = {
     ...products[updateProductIndex],
@@ -39,7 +39,7 @@ const updateProduct = (id, product) => {
 const deleteProduct = (id) => {
   let updateProductIndex = products.findIndex((product) => product._id === id);
   if (updateProductIndex === -1) {
-    throw new Error(`There is no product with this id: ${id}`);
+    throw new Error("Product not found");
   }
   products.splice(updateProductIndex, 1);
   return true;

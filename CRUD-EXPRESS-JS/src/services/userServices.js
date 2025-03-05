@@ -27,7 +27,7 @@ const createUser = (userData) => {
 const updateUser = (id, user) => {
   let updatedUserIndex = users.findIndex((user) => user._id === id);
   if (updatedUserIndex === -1) {
-    throw new Error(`No user found with this id : ${id}`);
+    throw new Error("User not found");
   }
 
   users[updatedUserIndex] = { ...users[updatedUserIndex], ...user };
@@ -37,7 +37,7 @@ const updateUser = (id, user) => {
 const deleteUser = (id) => {
   let userIndex = users.findIndex((user) => user._id === id);
   if (userIndex === -1) {
-    throw new Error(`No user found with this id : ${id}`);
+    throw new Error("User not found");
   }
 
   users.splice(userIndex, 1);
