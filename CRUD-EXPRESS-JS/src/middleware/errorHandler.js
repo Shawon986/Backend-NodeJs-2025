@@ -1,8 +1,10 @@
+const { NotFoundError } = require("../error");
+
 const errorHandler = (err,req,res,next)=>{
-    console.error(err);
-    if(err.message === "Product not found" || err.message === "User not found"){
+    if(err instanceof NotFoundError){
         return res.status(400).send(err.message);
     }
+    console.error(err.stack);
     res.status(500).send("Internal server error !!!")
     next();
 };

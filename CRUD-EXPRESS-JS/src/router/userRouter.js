@@ -1,6 +1,5 @@
 const express = require("express");
 const { userServices } = require("../services");
-const { userMiddleware } = require("../middleware");
 const userRouter = express.Router();
 
 //Get all users API
@@ -9,7 +8,7 @@ userRouter.get("/", (req, res) => {
 });
 
 //Create new user API
-userRouter.post("/",userMiddleware, (req, res) => {
+userRouter.post("/", (req, res) => {
   res.status(201).json(userServices.createUser(req.body));
 });
 

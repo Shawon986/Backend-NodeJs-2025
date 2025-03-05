@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
+const { NotFoundError } = require("../error");
 
 //Users data
 const users = [
@@ -27,7 +28,7 @@ const createUser = (userData) => {
 const updateUser = (id, user) => {
   let updatedUserIndex = users.findIndex((user) => user._id === id);
   if (updatedUserIndex === -1) {
-    throw new Error("User not found");
+    throw new NotFoundError(`No user found with this id : ${id}`);
   }
 
   users[updatedUserIndex] = { ...users[updatedUserIndex], ...user };
@@ -37,7 +38,7 @@ const updateUser = (id, user) => {
 const deleteUser = (id) => {
   let userIndex = users.findIndex((user) => user._id === id);
   if (userIndex === -1) {
-    throw new Error("User not found");
+    throw new NotFoundError(`No user found with this id : ${id}`);
   }
 
   users.splice(userIndex, 1);
