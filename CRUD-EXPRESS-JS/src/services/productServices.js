@@ -17,7 +17,7 @@ const products = [
   },
 ];
 
-const getAllProducts = () => products;
+const getAllProducts = () => products;  
 
 const createNewProduct = (productData) => {
   const newProduct = { _id: uuidv4(), ...productData };

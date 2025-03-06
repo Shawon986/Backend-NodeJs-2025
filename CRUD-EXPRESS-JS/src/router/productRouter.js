@@ -14,13 +14,13 @@ productRouter.post("/", (req, res) => {
 
 //Update product API
 productRouter.put("/:id", (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; 
   const updatedProduct = productServices.updateProduct(id, req.body);
-  res.status(201).json(updatedProduct);
+  res.status(201).json(updatedProduct); 
 });
 
 //Delete product API
-productRouter.delete("/:id", (req, res) => {
+productRouter.delete("/:id", (req, res) => { 
   const { id } = req.params;
   productServices.deleteProduct(id);
   res.json({ message: "Product deleted successfully" });

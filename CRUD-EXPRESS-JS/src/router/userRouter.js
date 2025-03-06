@@ -16,7 +16,7 @@ userRouter.post("/", (req, res) => {
 userRouter.put("/:id", (req, res) => {
   const { id } = req.params;
   const updatedUser = userServices.updateUser(id, req.body);
-  res.status(201).json(updatedUser);
+  res.status(201).json(updatedUser); 
 });
 
 //Delete user API

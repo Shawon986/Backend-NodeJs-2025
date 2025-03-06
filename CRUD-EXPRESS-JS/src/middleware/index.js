@@ -7,14 +7,14 @@ const productMiddleware = (req, res, next)=>{
     next();
 };
 
-//Middleware for user route
+//Middleware for user route 
 const userMiddleware = (req,res, next)=>{
     console.log("Someone requested the user route", req.method, req.url);
     next();
 }
 module.exports = {
     logRequestMiddleware,
-    productMiddleware,
+    productMiddleware, 
     userMiddleware,
     errorHandler,
-};
+}; 
