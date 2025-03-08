@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const { NotFoundError } = require("../error");
+const { Product } = require("../Model");
 
 //Products data
 const products = [
@@ -19,9 +20,9 @@ const products = [
 
 const getAllProducts = () => products;  
 
-const createNewProduct = (productData) => {
-  const newProduct = { _id: uuidv4(), ...productData };
-  products.push(newProduct);
+const createNewProduct = async (productData) => {
+  const newProduct = new Product(productData);
+  await newProduct.save();
   return newProduct;
 };
 

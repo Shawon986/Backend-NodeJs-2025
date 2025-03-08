@@ -19,7 +19,7 @@ configureRouter(app);
 
 app.use(errorHandler);
 
-app.listen(port,()=>{
+app.listen(port,()=>{ 
     console.log("App is running on port: 5000"); 
 }); 
 
