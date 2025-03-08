@@ -5,7 +5,9 @@ const productSchema = new mongoose.Schema({
     description : String,
     price : {type: Number, required : true},
     brand: String,
-    category : [String]
+    category : [String],
+    deleted : {type : Boolean, default : false},
+    deletedAt : {type : Date, default : null},
 },
 
 {timestamps :true},

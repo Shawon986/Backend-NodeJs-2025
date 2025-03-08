@@ -28,9 +28,16 @@ const updateProduct = asyncHandler(async (req,res)=>{
     res.status(201).json(updatedProduct);
 });
 
+const deleteProduct = asyncHandler(async (req,res)=>{    
+    const { id } = req.params;
+    await productServices.deleteProduct(id);
+    res.json({message: "Product deleted successfully"});
+});
+
 module.exports = {
     createNewProduct,
     getAllProducts,
     updateProduct,
     getProductById,
+    deleteProduct,
 }

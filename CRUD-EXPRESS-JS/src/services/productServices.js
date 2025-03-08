@@ -19,7 +19,7 @@ const products = [
 ];
 
 const getAllProducts = async () => {
-  const products = await Product.find();
+  const products = await Product.find({deleted: false});
   return products;
 };
 
@@ -31,20 +31,15 @@ const createNewProduct = async (productData) => {
 };
 
 const getProductById = async (id) => {
-  return await Product.findById(id);
+  return await Product.findOne({_id: id, deleted: false});
 }
 
 const updateProduct = async(id, product) => {
   return await Product.findByIdAndUpdate({_id: id}, product);
 };
 
-const deleteProduct = (id) => {
-  let updateProductIndex = products.findIndex((product) => product._id === id);
-  if (updateProductIndex === -1) {
-    throw new NotFoundError(`There is no product with this id: ${id}`);
-  }
-  products.splice(updateProductIndex, 1);
-  return true;
+const deleteProduct = async (id) => {
+  return await Product.findOneAndUpdate({_id: id}, {deleted: true, deletedAt: new Date()});
 };
 
 module.exports = {

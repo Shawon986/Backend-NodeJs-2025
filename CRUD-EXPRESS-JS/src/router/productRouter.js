@@ -16,10 +16,6 @@ productRouter.post("/", productController.createNewProduct);
 productRouter.put("/:id", productController.updateProduct);
 
 //Delete product API
-productRouter.delete("/:id", (req, res) => { 
-  const { id } = req.params;
-  productServices.deleteProduct(id);
-  res.json({ message: "Product deleted successfully" });
-});
+productRouter.delete("/:id", productController.deleteProduct);
 
 module.exports = productRouter;
