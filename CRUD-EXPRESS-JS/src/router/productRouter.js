@@ -4,20 +4,13 @@ const { productController } = require("../Controller");
 const productRouter = express.Router();
 
 //get all products API
-productRouter.get("/", async (req, res) => {
-  const products = await productServices.getAllProducts();
-  res.json(products);
-});
+productRouter.get("/", productController.getAllProducts);
 
 //Create new product API
 productRouter.post("/", productController.createNewProduct);
 
 //Update product API
-productRouter.put("/:id", (req, res) => {
-  const { id } = req.params; 
-  const updatedProduct = productServices.updateProduct(id, req.body);
-  res.status(201).json(updatedProduct); 
-});
+productRouter.put("/:id", productController.updateProduct);
 
 //Delete product API
 productRouter.delete("/:id", (req, res) => { 

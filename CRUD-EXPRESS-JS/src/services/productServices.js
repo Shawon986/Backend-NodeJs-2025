@@ -29,16 +29,9 @@ const createNewProduct = async (productData) => {
   return newProduct;
 };
 
-const updateProduct = (id, product) => {
-  let updateProductIndex = products.findIndex((product) => product._id === id);
-  if (updateProductIndex === -1) {
-    throw new NotFoundError(`There is no product with this id: ${id}`);
-  }
-  products[updateProductIndex] = {
-    ...products[updateProductIndex],
-    ...product,
-  };
-  return products[updateProductIndex];
+const updateProduct = async(id, product) => {
+    return await Product
+    .findByIdAndUpdate({_id: id}, product);
 };
 
 const deleteProduct = (id) => {
