@@ -6,7 +6,11 @@ const productSchema = new mongoose.Schema({
     price : {type: Number, required : true},
     brand: String,
     category : [String]
-});
+},
+
+{timestamps :true},
+
+);
 
 const Product = mongoose.model('Product' , productSchema);
 
