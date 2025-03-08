@@ -15,6 +15,12 @@ const getAllProducts = asyncHandler(async (req,res)=>{
     res.json(products);
 });
 
+const getProductById = asyncHandler(async (req,res)=>{
+    const { id } = req.params;
+    const product = await productServices.getProductById(id);
+    res.json(product);
+});
+
 
 const updateProduct = asyncHandler(async (req,res)=>{
     const { id } = req.params;
@@ -26,4 +32,5 @@ module.exports = {
     createNewProduct,
     getAllProducts,
     updateProduct,
+    getProductById,
 }
