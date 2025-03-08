@@ -18,7 +18,10 @@ const products = [
   },
 ];
 
-const getAllProducts = () => products;  
+const getAllProducts = async () => {
+  const products = await Product.find();
+  return products;
+} 
 
 const createNewProduct = async (productData) => {
   const newProduct = new Product(productData);

@@ -4,8 +4,9 @@ const { productController } = require("../Controller");
 const productRouter = express.Router();
 
 //get all products API
-productRouter.get("/", (req, res) => {
-  res.send(productServices.getAllProducts());
+productRouter.get("/", async (req, res) => {
+  const products = await productServices.getAllProducts();
+  res.json(products);
 });
 
 //Create new product API
