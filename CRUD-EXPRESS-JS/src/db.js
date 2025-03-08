@@ -11,9 +11,10 @@ const connectDB = async ()=>{
 
         
     } catch (error) {
-        console.error(`MONGODB connection failed !!! ${error}`);
-    }
-    
+        console.error(`MONGODB connection failed !!! ${error.message}`);
+        
+    } 
+      
 }; 
-
-module.exports = connectDB;
+ 
+module.exports = connectDB; 
