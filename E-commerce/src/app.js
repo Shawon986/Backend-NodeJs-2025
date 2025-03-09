@@ -33,6 +33,15 @@ app.get('/api/products',(req,res)=>{
     res.send(products);
 });
 
+//Get one product by id API
+app.get('/api/products/:id', (req,res)=>{
+    const id = req.params.id;
+    const product = products.find((product)=> product._id ===id);
+    if(!product){
+        res.send(`No product has found with this id ${id}`);
+    }
+    res.send(product);
+});
 
 
 app.listen(port, ()=>{
