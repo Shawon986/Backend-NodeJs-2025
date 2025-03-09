@@ -6,7 +6,7 @@ const port = 9000 ;
 
 app.get('/test',(req,res)=>{
     res.send("HI THERE !!!");
-})
+});
 
 
 app.listen(port, ()=>{
