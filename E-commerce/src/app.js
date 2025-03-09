@@ -43,6 +43,15 @@ app.get('/api/products/:id', (req,res)=>{
     res.send(product);
 });
 
+//Create new product API
+app.post('/api/products', (req,res)=>{
+    let {payload} = req.body;
+    const newProduct = {_id: uuidv4(), ...payload};
+    products.push(newProduct);
+    res.status(201).json(newProduct);
+
+});
+
 
 app.listen(port, ()=>{
     console.log(`App is running on port ${port}`);
