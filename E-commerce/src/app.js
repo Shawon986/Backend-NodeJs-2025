@@ -52,6 +52,18 @@ app.post('/api/products', (req,res)=>{
 
 });
 
+//Update product API
+app.put('/api/products/:id', (req,res)=>{
+    const id = req.params.id;
+    const payload = req.body;
+    const productIndex = products.findIndex((product)=>product._id===id);
+    if(productIndex === -1){
+        return res.status(404).send(`No product has found with this id ${id}`);
+    }
+    products[productIndex] = { ...products[productIndex], ...payload};
+    res.json(products[productIndex]);
+});
+
 
 app.listen(port, ()=>{
     console.log(`App is running on port ${port}`);
