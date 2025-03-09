@@ -1,11 +1,12 @@
 const express = require('express');
+const {v4: uuidv4} = require('uuid');
 const app = express();
 const port = 9000 ;
 app.use(express.json());
 
 const products = [
     {
-        _id: 101,
+        _id: uuidv4(),
         model: "DJI MINI 2",
         brand: "DJI",
         categories: "Drone",
@@ -14,7 +15,7 @@ const products = [
 
     },
     {
-        _id: 102,
+        _id: uuidv4(),
         model: "DJI AVATA 2",
         brand: "DJI",
         categories: "Drone",
