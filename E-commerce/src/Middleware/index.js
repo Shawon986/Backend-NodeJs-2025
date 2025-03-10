@@ -1,4 +1,5 @@
 const {logMiddleWare} = require('./logMiddleWare');
+const {errorHandler} = require('./errorHandler');
 
 const productRouteMiddleware = (req, res, next) => {
     console.log(`Someone is trying to access product route with method ${req.method}`);
@@ -8,4 +9,5 @@ const productRouteMiddleware = (req, res, next) => {
 module.exports = {
     logMiddleWare,
     productRouteMiddleware,
+    errorHandler,
 };  
