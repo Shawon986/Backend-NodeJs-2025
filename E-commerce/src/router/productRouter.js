@@ -24,12 +24,12 @@ const products = [
 ];
 
 //Get all products API
-productRouter.get('/api/products',(req,res)=>{
+productRouter.get('/',(req,res)=>{
     res.send(products);
 });
 
 //Get one product by id API
-productRouter.get('/api/products/:id', (req,res)=>{
+productRouter.get('/:id', (req,res)=>{
     const id = req.params.id;
     const product = products.find((product)=> product._id ===id);
     if(!product){
@@ -39,7 +39,7 @@ productRouter.get('/api/products/:id', (req,res)=>{
 });
 
 //Create new product API
-productRouter.post('/api/products', (req,res)=>{
+productRouter.post('/', (req,res)=>{
     let {payload} = req.body;
     const newProduct = {_id: uuidv4(), ...payload};
     products.push(newProduct);
@@ -48,7 +48,7 @@ productRouter.post('/api/products', (req,res)=>{
 });
 
 //Update product API
-productRouter.put('/api/products/:id', (req,res)=>{
+productRouter.put('/:id', (req,res)=>{
     const id = req.params.id;
     const payload = req.body;
     const productIndex = products.findIndex((product)=>product._id===id);
@@ -60,7 +60,7 @@ productRouter.put('/api/products/:id', (req,res)=>{
 });
 
 //Delete product api
-productRouter.delete('/api/products/:id',(req,res)=>{
+productRouter.delete('/:id',(req,res)=>{
     const id = req.params.id;
     const productIndex = products.findIndex((product)=>product._id===id);
     if(productIndex === -1){
