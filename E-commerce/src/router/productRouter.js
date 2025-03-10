@@ -25,23 +25,13 @@ productRouter.post('/', (req,res)=>{
 //Update product API
 productRouter.put('/:id', (req,res)=>{
     const id = req.params.id;
-    const payload = req.body;
-    const productIndex = products.findIndex((product)=>product._id===id);
-    if(productIndex === -1){
-        return res.status(404).send(`No product has found with this id ${id}`);
-    }
-    products[productIndex] = { ...products[productIndex], ...payload};
-    res.json(products[productIndex]);
+    res.json(productServices.updateProduct(id,req.body));
 });
 
 //Delete product api
 productRouter.delete('/:id',(req,res)=>{
     const id = req.params.id;
-    const productIndex = products.findIndex((product)=>product._id===id);
-    if(productIndex === -1){
-        return res.status(404).send(`No product has found with this id ${id}`);
-    }
-    products.splice(productIndex,1);
+    productServices.deleteProduct(id);
     res.json({ message:"Product has deleted" });
 });
 

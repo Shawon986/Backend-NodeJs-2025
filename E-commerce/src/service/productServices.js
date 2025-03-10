@@ -34,8 +34,30 @@ const createProduct = (payload)=>{
     return newProduct;
 };
 
+const updateProduct = (id, payload)=>{
+    
+    const productIndex = products.findIndex((product)=>product._id===id);
+    if(productIndex === -1){
+        throw new Error(`No product has found with this
+        id ${id}`);
+    }
+    products[productIndex] = {...products[productIndex], ...payload};
+    return products[productIndex];
+};   
+
+const deleteProduct = (id)=>{
+    const productIndex = products.findIndex((product)=>product._id===id);
+    if(productIndex === -1){
+        throw new Error(`No product has found with this id ${id}`);
+    }
+    products.splice(productIndex, 1);
+    return true;
+}
+
 module.exports = {
     getAllProducts,
     getProductById,
     createProduct,
+    updateProduct,
+    deleteProduct,
 };
