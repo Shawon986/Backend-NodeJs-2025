@@ -1,3 +1,5 @@
+
+const { productRouteMiddleware } = require('../Middleware');
 const productRouter = require('./productRouter');
 
 const configureRouter = (app) => {
@@ -6,7 +8,7 @@ const configureRouter = (app) => {
     res.send("HI THERE !!!");
 });
 
-app.use('/api/products', productRouter);
+app.use('/api/products',productRouteMiddleware, productRouter);
 
 };
 
