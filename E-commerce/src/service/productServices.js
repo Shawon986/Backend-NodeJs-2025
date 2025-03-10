@@ -35,7 +35,6 @@ const createProduct = (payload)=>{
 };
 
 const updateProduct = (id, payload)=>{
-    
     const productIndex = products.findIndex((product)=>product._id===id);
     if(productIndex === -1){
         throw new Error(`No product has found with this
