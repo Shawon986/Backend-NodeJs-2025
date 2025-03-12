@@ -1,8 +1,9 @@
+const  config  = require('./Config');
 const mongoose = require('mongoose');
 
 
-const MONGO_URI = process.env.MONGO_URI;
-const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
+const MONGO_URI = config.db.MONGO_URI;
+const MONGO_DB_NAME = config.db.MONGO_DB_NAME;
 
 const connectDB = async()=>{
     console.log('Connecting to MongoDB');
