@@ -6,3 +6,4 @@
 ### 4. npm install uuid // to auto generate id
 ### 5. npm install mongoose --save // to connect mongodb database by mongoose
 ### 6. npm i -dotenv // to use .env file
+### 7. npm i express-async-handler // use to avoid repeatative try catch
