@@ -43,13 +43,9 @@ const updateProduct = async(id, payload)=>{
     return await Product.findByIdAndUpdate({_id:id}, payload);
 };   
 
-const deleteProduct = (id)=>{
-    const productIndex = products.findIndex((product)=>product._id===id);
-    if(productIndex === -1){
-        throw new notFoundError(`No product has found with this id ${id}`);
-    }
-    products.splice(productIndex, 1);
-    return true;
+const deleteProduct = async(id)=>{
+    await Product.findOneAndUpdate({_id:id}, {deleted:true, deletedAt: new Date()});
+    
 }
 
 module.exports = {
