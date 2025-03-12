@@ -10,9 +10,7 @@ const productRouter = express.Router();
 productRouter.get('/',productController.getAllProducts);
 
 //Get one product by id API
-productRouter.get('/:id', (req,res)=>{
-    res.send(productServices.getProductById(req.params.id));
-});
+productRouter.get('/:id', productController.getProductById);
 
 //Create new product API
 productRouter.post('/', productController.createProduct);

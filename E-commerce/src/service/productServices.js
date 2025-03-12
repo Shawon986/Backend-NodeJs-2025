@@ -25,8 +25,8 @@ const getAllProducts = async() => {
     return products;
 };
 
-const getProductById = (id)=>{
-    const product = products.find((product)=> product._id ===id);
+const getProductById = async(id)=>{
+    const product = await Product.findById(id);
     if(!product){
         throw new notFoundError(`No product has found with this id ${id}`);
     }

@@ -13,8 +13,13 @@ const getAllProducts = asyncHandler( async (req,res)=>{
     res.json(products);
 });
 
+const getProductById = asyncHandler( async (req,res)=>{
+    const product = await productServices.getProductById(req.params.id);
+    res.json(product);
+});
 
 module.exports = {
     createProduct,
     getAllProducts,
+    getProductById,
 };  
