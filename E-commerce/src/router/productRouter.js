@@ -16,10 +16,7 @@ productRouter.get('/:id', productController.getProductById);
 productRouter.post('/', productController.createProduct);
 
 //Update product API
-productRouter.put('/:id', (req,res)=>{
-    const id = req.params.id;
-    res.json(productServices.updateProduct(id,req.body));
-});
+productRouter.put('/:id', productController.updateProduct);
 
 //Delete product api
 productRouter.delete('/:id',(req,res)=>{

@@ -18,8 +18,15 @@ const getProductById = asyncHandler( async (req,res)=>{
     res.json(product);
 });
 
+const updateProduct = asyncHandler( async (req,res)=>{
+    const id = req.params.id;
+    const updatedProduct = await productServices.updateProduct(id, req.body);
+    res.json(updatedProduct);
+});
+
 module.exports = {
     createProduct,
     getAllProducts,
     getProductById,
+    updateProduct,
 };  

@@ -39,14 +39,8 @@ const createProduct = async (payload)=>{
     return newProduct;
 };
 
-const updateProduct = (id, payload)=>{
-    const productIndex = products.findIndex((product)=>product._id===id);
-    if(productIndex === -1){
-        throw new notFoundError(`No product has found with this
-        id ${id}`);
-    }
-    products[productIndex] = {...products[productIndex], ...payload};
-    return products[productIndex];
+const updateProduct = async(id, payload)=>{
+    return await Product.findByIdAndUpdate({_id:id}, payload);
 };   
 
 const deleteProduct = (id)=>{
