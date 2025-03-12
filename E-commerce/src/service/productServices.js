@@ -20,7 +20,10 @@ const products = [
     }
 ];
 
-const getAllProducts = () => products;
+const getAllProducts = async() => {
+    const products = await Product.find({});
+    return products;
+};
 
 const getProductById = (id)=>{
     const product = products.find((product)=> product._id ===id);

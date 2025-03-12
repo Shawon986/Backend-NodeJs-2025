@@ -8,6 +8,13 @@ const createProduct = asyncHandler( async (req,res)=>{
    
 });
 
+const getAllProducts = asyncHandler( async (req,res)=>{
+    const products = await productServices.getAllProducts();
+    res.json(products);
+});
+
+
 module.exports = {
     createProduct,
+    getAllProducts,
 };  

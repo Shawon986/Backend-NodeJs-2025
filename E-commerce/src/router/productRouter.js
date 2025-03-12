@@ -7,9 +7,7 @@ const productRouter = express.Router();
 
 
 //Get all products API
-productRouter.get('/',(req,res)=>{
-    res.send(productServices.getAllProducts());
-});
+productRouter.get('/',productController.getAllProducts);
 
 //Get one product by id API
 productRouter.get('/:id', (req,res)=>{
