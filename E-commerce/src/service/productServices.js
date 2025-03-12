@@ -1,24 +1,7 @@
-const {v4: uuidv4} = require('uuid');
+
 const { notFoundError } = require('../errors');
 const { Product } = require('../Model');
-const products = [
-    {
-        _id: uuidv4(),
-        model: "DJI MINI 2",
-        brand: "DJI",
-        categories: "Drone",
-        price: 2200,
-        
 
-    },
-    {
-        _id: uuidv4(),
-        model: "DJI AVATA 2",
-        brand: "DJI",
-        categories: "Drone",
-        price: 4200,
-    }
-];
 
 const getAllProducts = async() => {
     const products = await Product.find({deleted: false});
