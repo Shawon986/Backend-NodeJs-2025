@@ -19,7 +19,6 @@ productRouter.get('/:id', (req,res)=>{
 //Create new product API
 productRouter.post('/', (req,res)=>{
     res.status(201).json(productServices.createProduct(req.body));
-
 });
 
 //Update product API
