@@ -1,6 +1,6 @@
 const express = require('express');
 const { productServices } = require('../service');
-
+const { productController } = require('../controller');
 
 const productRouter = express.Router();
 
@@ -17,9 +17,7 @@ productRouter.get('/:id', (req,res)=>{
 });
 
 //Create new product API
-productRouter.post('/', (req,res)=>{
-    res.status(201).json(productServices.createProduct(req.body));
-});
+productRouter.post('/', productController.createProduct);
 
 //Update product API
 productRouter.put('/:id', (req,res)=>{
