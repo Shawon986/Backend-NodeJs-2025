@@ -53,6 +53,16 @@ userRouter.put('/:id',(req,res)=>{
     res.json(users[userIndex]);
 });
 
+//Delete user API
+userRouter.delete('/:id',(req,res)=>{
+    const id = req.params.id;
+    const userIndex = users.findIndex((user)=>user._id === id);
+    if(userIndex === -1){
+        res.status(404).send({message:`No user found with this id ${id}`});
+    }
+    users.splice(userIndex,1);
+    res.json({message: "User has deleted"});
+})
 
 
 module.exports = userRouter;
