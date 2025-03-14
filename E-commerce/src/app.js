@@ -1,5 +1,5 @@
 const express = require('express');
-const { productRouter } = require('./router');
+const { productRouter, userRouter } = require('./router');
 const app = express();
 const port = 9000 ;
 app.use(express.json());
@@ -11,8 +11,8 @@ app.get('/test',(req,res)=>{
     res.send("HI THERE !!!");
 });
 
-app.use(productRouter);
-
+app.use('/api/products',productRouter);
+app.use('/api/users',userRouter);
 
 
 app.listen(port, ()=>{
