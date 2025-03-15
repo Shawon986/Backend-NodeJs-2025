@@ -41,9 +41,19 @@ const updateUser = (id,payload)=>{
     return users[userIndex];
 };
 
+const deleteUser = (id)=>{
+    const userIndex = users.findIndex((user)=>user._id === id);
+    if(userIndex === -1){
+        res.status(404).send({message:`No user found with this id ${id}`});
+    }
+    users.splice(userIndex,1);
+    return users;
+};
+
 module.exports ={
     getAllUsers,
     getUserById,
     createUser,
     updateUser,
+    deleteUser
 }
