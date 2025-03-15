@@ -32,8 +32,18 @@ const createUser = (payload)=>{
     return newUser;
 };
 
+const updateUser = (id,payload)=>{
+    const userIndex = users.findIndex((user)=>user._id === id);
+    if(userIndex === -1){
+        res.status(404).send({message:`No user found with this id ${id}`});
+    }
+    users[userIndex] = {...users[userIndex], ...payload};
+    return users[userIndex];
+};
+
 module.exports ={
     getAllUsers,
     getUserById,
     createUser,
+    updateUser,
 }
