@@ -20,13 +20,8 @@ userRouter.post('/',(req,res)=>{
 //Update user API
 userRouter.put('/:id',(req,res)=>{
     const id = req.params.id;
-    const payload = req.body;
-    const userIndex = users.findIndex((user)=>user._id === id);
-    if(userIndex === -1){
-        res.status(404).send({message:`No user found with this id ${id}`});
-    }
-    users[userIndex] = {...users[userIndex], ...payload};
-    res.json(users[userIndex]);
+    const user = userServices.updateUser(id,req.body);
+    res.json(user);
 });
 
 //Delete user API
