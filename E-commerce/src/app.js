@@ -3,7 +3,7 @@ const { configureRouter } = require('./router');
 const { logMiddleware } = require('./middleware');
 const { errorHandler } = require('./middleware/errorHandler');
 const { connectDb } = require('./db');
-const config = require('./config/config');
+const {config} = require('./config/config');
 
 const app = express();
 

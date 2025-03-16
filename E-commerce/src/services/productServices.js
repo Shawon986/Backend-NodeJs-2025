@@ -21,11 +21,14 @@ const products = [
     }
 ];
 
-const getAllProducts = () =>  products;
+const getAllProducts = async() => {
+    const products = await Product.find();
+    return products;
+};
 
-const getProductById = (id) => {
-    const product = products.find((product) => product._id === id);
-    if(!product){
+const getProductById = async(id) => {
+    const product = await Product.findById(id);
+    if (!product) {
         throw new NotFoundError(`No product has found with this id ${id}`);
     }
     return product;
@@ -37,22 +40,13 @@ const createProduct = async(payload) => {
     return newProduct;
 };
 
-const updateProduct = (id, payload) => {
-    const productIndex = products.findIndex((product) => product._id === id);
-    if (productIndex === -1) {
-        throw new NotFoundError(`No product has found with this id ${id}`);
-    }
-    products[productIndex] = { ...products[productIndex], ...payload };
-    return products[productIndex];
+const updateProduct = async(id, payload) => {
+    return await Product.findByIdAndUpdate({_id:id}, payload);
+
 };
 
-const deleteProduct = (id) => {
-    const productIndex = products.findIndex((product) => product._id === id);
-    if (productIndex === -1) {
-        throw new NotFoundError(`No product has found with this id ${id}`);
-    }
-    products.splice(productIndex, 1);
-    return { message: "Product has deleted" };
+const deleteProduct =async (id) => {
+    return await Product.findByIdAndUpdate({_id:id});
 };
 
 module.exports = {
