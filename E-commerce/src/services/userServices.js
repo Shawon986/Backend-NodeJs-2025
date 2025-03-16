@@ -1,5 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const { NotFoundError } = require('../errors');
+const { User } = require('../model');
 
 
 const users = [
@@ -27,9 +28,9 @@ const getUserById = (id)=> {
     return user;
 };
 
-const createUser = (payload)=>{
-    const newUser = {_id: uuidv4(), ...payload};
-    users.push(newUser);
+const createUser = async(payload)=>{
+    const newUser = new User(payload);
+    await newUser.save();
     return newUser;
 };
 
