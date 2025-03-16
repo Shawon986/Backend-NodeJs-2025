@@ -22,12 +22,12 @@ const products = [
 ];
 
 const getAllProducts = async() => {
-    const products = await Product.find();
+    const products = await Product.find({deleted: false});
     return products;
 };
 
 const getProductById = async(id) => {
-    const product = await Product.findById(id);
+    const product = await Product.findById(id, {deleted: false});
     if (!product) {
         throw new NotFoundError(`No product has found with this id ${id}`);
     }
@@ -46,7 +46,7 @@ const updateProduct = async(id, payload) => {
 };
 
 const deleteProduct =async (id) => {
-    return await Product.findByIdAndUpdate({_id:id});
+    return await Product.findByIdAndUpdate({_id:id}, {deleted:true, deletedAt: new Date()});
 };
 
 module.exports = {
