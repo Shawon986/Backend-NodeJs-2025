@@ -21,7 +21,7 @@ const getAllUsers = ()=> users;
 const getUserById = (id)=> {
     const user = users.find((user)=> user._id ===id);
     if(!user){
-        res.send(`No user has found with this id ${id}`);
+        throw new Error(`No user found with this id ${id}`);
     }
     return user;
 };
@@ -35,7 +35,7 @@ const createUser = (payload)=>{
 const updateUser = (id,payload)=>{
     const userIndex = users.findIndex((user)=>user._id === id);
     if(userIndex === -1){
-        res.status(404).send({message:`No user found with this id ${id}`});
+        throw new Error(`No user found with this id ${id}`);
     }
     users[userIndex] = {...users[userIndex], ...payload};
     return users[userIndex];
@@ -44,7 +44,7 @@ const updateUser = (id,payload)=>{
 const deleteUser = (id)=>{
     const userIndex = users.findIndex((user)=>user._id === id);
     if(userIndex === -1){
-        res.status(404).send({message:`No user found with this id ${id}`});
+        throw new Error(`No user found with this id ${id}`);
     }
     users.splice(userIndex,1);
     return users;
