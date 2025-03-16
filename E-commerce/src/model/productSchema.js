@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema(
     brand: { type: String },
     quantity: { type: Number, required: true, default: 0 },
     categories: { type: String },
+    deleted : { type: Boolean, default: false },
+    deletedAt: { type: Date },
   },
   {
     timestamps: true,

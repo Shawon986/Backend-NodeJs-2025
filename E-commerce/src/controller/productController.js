@@ -10,13 +10,13 @@ const createProduct = asyncHandler(async (req, res) => {
 const getAllProducts = asyncHandler(async (req, res) => {
   const products = await productServices.getAllProducts();
   res.json(products);
-});
+}); 
 
 const getProductById = asyncHandler(async (req, res) => {
   const product = await productServices.getProductById(req.params.id);
   res.json(product);
 });
-
+ 
 const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const payload = req.body;
