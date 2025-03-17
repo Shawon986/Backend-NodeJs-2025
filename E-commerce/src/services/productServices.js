@@ -41,12 +41,20 @@ const createProduct = async(payload) => {
 };
 
 const updateProduct = async(id, payload) => {
-    return await Product.findByIdAndUpdate({_id:id}, payload);
+    const product = await Product.findByIdAndUpdate({_id:id}, payload);
+    if (!product) {
+        throw new NotFoundError(`No product has found with this id ${id}`);
+    }
+    return product;
 
 };
 
 const deleteProduct =async (id) => {
-    return await Product.findByIdAndUpdate({_id:id}, {deleted:true, deletedAt: new Date()});
+    const product =  await Product.findByIdAndUpdate({_id:id}, {deleted:true, deletedAt: new Date()});
+    if (!product) {
+        throw new NotFoundError(`No product has found with this id ${id}`);
+    }
+    return product;
 };
 
 module.exports = {
