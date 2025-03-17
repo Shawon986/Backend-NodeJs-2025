@@ -18,10 +18,13 @@ const users = [
     }
 ];
 
-const getAllUsers = ()=> users;
+const getAllUsers = async()=> {
+    const users = await User.find({deleted: false});
+    return users;
+};
 
-const getUserById = (id)=> {
-    const user = users.find((user)=> user._id ===id);
+const getUserById = async (id)=> {
+    const user = await User.findOne({_id: id, deleted: false});
     if(!user){
         throw new NotFoundError(`No user found with this id ${id}`);
     }
@@ -34,22 +37,21 @@ const createUser = async(payload)=>{
     return newUser;
 };
 
-const updateUser = (id,payload)=>{
-    const userIndex = users.findIndex((user)=>user._id === id);
-    if(userIndex === -1){
+const updateUser =async (id,payload)=>{
+    const user = await User.findOneAndUpdate({_id: id, deleted: false}, payload);
+    if(!user){
         throw new NotFoundError(`No user found with this id ${id}`);
     }
-    users[userIndex] = {...users[userIndex], ...payload};
-    return users[userIndex];
+    return user;
+
 };
 
-const deleteUser = (id)=>{
-    const userIndex = users.findIndex((user)=>user._id === id);
-    if(userIndex === -1){
+const deleteUser =async (id)=>{
+    const user = await User.findOneAndUpdate({_id: id, deleted: true, deletedAt: new Date()});
+    if(!user){
         throw new NotFoundError(`No user found with this id ${id}`);
     }
-    users.splice(userIndex,1);
-    return users;
+    return user;
 };
 
 module.exports ={
