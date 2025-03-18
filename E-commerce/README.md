@@ -6,3 +6,4 @@
 ### 4. npm install uuid // to auto generate id
 ### 5. npm install mongoose --save // to install mongoose for connecting mongodb
 ### 6. npm i dotenv // to access env file
+### 7. npm i express-rate-limit // to limit all request (such as 10 request per minute)
