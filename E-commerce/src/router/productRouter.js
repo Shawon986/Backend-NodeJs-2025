@@ -1,6 +1,8 @@
 const express = require('express');
 const { productServices } = require('../services');
 const { productController } = require('../controller');
+const {validatePayload} = require('../middleware');
+const { schemaOfProduct } = require('../schema');
 const productRouter = express.Router();
 
 
@@ -14,7 +16,7 @@ productRouter.get('/', productController.getAllProducts);
 productRouter.get('/:id', productController.getProductById);
 
 //Create new product API
-productRouter.post('/', productController.createProduct);
+productRouter.post('/', validatePayload(schemaOfProduct.omit({_id:true})), productController.createProduct);
 
 //Update product API
 productRouter.put('/:id', productController.updateProduct); 
