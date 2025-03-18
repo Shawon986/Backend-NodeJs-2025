@@ -19,7 +19,7 @@ productRouter.get('/:id', productController.getProductById);
 productRouter.post('/', validatePayload(schemaOfProduct.omit({_id:true})), productController.createProduct);
 
 //Update product API
-productRouter.put('/:id',validatePayload(schemaOfProduct), productController.updateProduct); 
+productRouter.put('/:id',validatePayload(schemaOfProduct.partial()), productController.updateProduct); 
 
 //Delete product api
 productRouter.delete('/:id', productController.deleteProduct);
