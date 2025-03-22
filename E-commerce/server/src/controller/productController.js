@@ -8,7 +8,8 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await productServices.getAllProducts();
+  const {page , limit} = req.query;
+  const products = await productServices.getAllProducts({ page : parseInt(page || '0'),limit : parseInt(limit || '10')});
   res.json(products);
 }); 
 

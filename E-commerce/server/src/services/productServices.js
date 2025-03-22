@@ -21,8 +21,11 @@ const products = [
     }
 ];
 
-const getAllProducts = async() => {
-    const products = await Product.find({deleted: false});
+const getAllProducts = async({page = 0,limit = 10}) => {
+    const products = await Product.find({deleted: false})
+    .skip(page*limit)
+    .sort({createdAt : -1});
+    
     return products;
 };
 
