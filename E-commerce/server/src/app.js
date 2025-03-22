@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const rateLimit = require("express-rate-limit");
 const { configureRouter } = require('./router');
@@ -13,7 +14,7 @@ connectDb();
 
 app.use(express.json());
 
-
+app.use(cors(config.CORS))
 
 app.use(logMiddleware);
 const limiter = rateLimit({
